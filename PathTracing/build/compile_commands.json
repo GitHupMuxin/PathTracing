@@ -1,0 +1,50 @@
+[
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\BoundingBox.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\BoundingBox.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/BoundingBox.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\BoundingTree.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\BoundingTree.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/BoundingTree.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\main.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\main.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/main.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\Object.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\Object.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Object.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/Object.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\Ray.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\Ray.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Ray.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/Ray.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\render.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\render.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/render.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/render.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\Scene.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\Scene.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Scene.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/Scene.cpp.obj"
+},
+{
+  "directory": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/build",
+  "command": "E:\\VSCode\\CppCompiler\\mingw64\\bin\\g++.exe  @CMakeFiles/RayTracing.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\RayTracing.dir\\src\\Tool.cpp.obj -c C:\\Users\\86178\\Desktop\\毕业设计\\vmLinux\\share\\myRayTrace\\src\\Tool.cpp",
+  "file": "C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Tool.cpp",
+  "output": "CMakeFiles/RayTracing.dir/src/Tool.cpp.obj"
+}
+]
