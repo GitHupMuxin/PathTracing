@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/PathTracing.dir/source/main.cpp.o  -o PathTracing  ../engine/libengine_lib.a 
