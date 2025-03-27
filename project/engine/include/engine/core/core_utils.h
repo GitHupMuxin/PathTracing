@@ -1,3 +1,4 @@
+#pragma once
 #include "vector_defination.h"
 
 namespace core

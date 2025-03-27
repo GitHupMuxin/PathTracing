@@ -5,6 +5,7 @@
 namespace scene
 {
 
+
     BoundingTreeNode::BoundingTreeNode()
     {
         box_.pMax_ = box_.pMin_ = core::Vector3f(0.0f);

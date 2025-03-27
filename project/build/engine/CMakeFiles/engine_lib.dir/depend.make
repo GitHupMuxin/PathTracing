@@ -16,6 +16,9 @@ engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o: ../engine/include/engine
 engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o: ../engine/include/engine/core/vector_inl.hpp
 engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o: ../engine/source/core/ray.cpp
 
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o: ../engine/include/engine/platform/platform_utils.h
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o: ../engine/source/platform/linux/platform_utils.cpp
+
 engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o: ../engine/include/engine/core/random_queue.h
 engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o: ../engine/include/engine/core/ray.h
 engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o: ../engine/include/engine/core/vector.h

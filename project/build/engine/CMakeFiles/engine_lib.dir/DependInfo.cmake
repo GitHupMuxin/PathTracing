@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/muxin/Desktop/PathTracing/project/engine/source/core/core_utils.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/core/core_utils.cpp.o"
   "/home/muxin/Desktop/PathTracing/project/engine/source/core/random_queue.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/core/random_queue.cpp.o"
   "/home/muxin/Desktop/PathTracing/project/engine/source/core/ray.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o"
+  "/home/muxin/Desktop/PathTracing/project/engine/source/platform/linux/platform_utils.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o"
   "/home/muxin/Desktop/PathTracing/project/engine/source/rendering/rendering.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o"
   "/home/muxin/Desktop/PathTracing/project/engine/source/rendering/rendering_utils.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/rendering/rendering_utils.cpp.o"
   "/home/muxin/Desktop/PathTracing/project/engine/source/resource/object.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/resource/object.cpp.o"
@@ -17,6 +18,11 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/muxin/Desktop/PathTracing/project/engine/source/scene/scene_object.cpp" "/home/muxin/Desktop/PathTracing/project/build/engine/CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "NDEBUG"
+  )
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

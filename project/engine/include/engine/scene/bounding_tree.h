@@ -1,10 +1,9 @@
 #pragma once
-#include "bounding_box.h"
+#include <memory>
 #include "engine/core/vector_defination.h"
 #include "engine/core/ray.h"
 #include "engine/resource/object.h"
 #include "scene_object.h"
-#include <memory>
 
 namespace scene
 {
@@ -45,20 +44,20 @@ namespace scene
     };
 
 
-class BoundingTreeFactory
-{
-    private:
-        static BoundingTreeFactory* instance_;
+    class BoundingTreeFactory
+    {
+        private:
+            static BoundingTreeFactory* instance_;
 
-        BoundingTreeFactory();
-        BoundingTreeFactory(const BoundingTreeFactory& ) = delete;
-        BoundingTreeFactory&            operator = (const BoundingTreeFactory& ) = delete;
-    public:
-        enum TypeOfBoundingTree { BVH };
+            BoundingTreeFactory();
+            BoundingTreeFactory(const BoundingTreeFactory& ) = delete;
+            BoundingTreeFactory&            operator = (const BoundingTreeFactory& ) = delete;
+        public:
+            enum TypeOfBoundingTree { BVH };
 
-        static BoundingTreeFactory&     Instance();
-        BaseBoundingTree*               GetBoundingTree(TypeOfBoundingTree t);    
-};
+            static BoundingTreeFactory&     Instance();
+            BaseBoundingTree*               GetBoundingTree(TypeOfBoundingTree t);    
+    };
 
 
 }

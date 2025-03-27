@@ -1,6 +1,10 @@
+#pragma once
 #include "engine/core/vector_defination.h"
 #include "engine/resource/object.h"
+
 #include "bounding_box.h"
+
+
 
 namespace scene
 {

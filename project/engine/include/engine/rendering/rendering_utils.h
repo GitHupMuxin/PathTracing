@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include "engine/core/vector_defination.h"
 

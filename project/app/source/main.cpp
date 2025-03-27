@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "engine/platform/platform_utils.h"
 #include "engine/core/vector_defination.h"
 #include "engine/core/random_queue.h"
 #include "engine/core/core_utils.h"
@@ -17,12 +18,13 @@ int main()
     scene::Scene scene(784, 784);
 
     //lode the mesh
-    resource::Obj floor("assets/models/cornellbox/floor.obj");
-    resource::Obj left("assets/models/cornellbox/left.obj");
-    resource::Obj right("assets/models/cornellbox/right.obj");
-    resource::Obj shortbox("assets/models/cornellbox/shortbox.obj");
-    resource::Obj tallbox("assets/models/cornellbox/tallbox.obj");
-    resource::Obj light("assets/models/cornellbox/light.obj");
+    std::string executionPath = platform::PlatformUtils::GetExecutionPath();
+    resource::Obj floor(executionPath + "/assets/models/cornellbox/floor.obj");
+    resource::Obj left(executionPath + "/assets/models/cornellbox/left.obj");
+    resource::Obj right(executionPath + "/assets/models/cornellbox/right.obj");
+    resource::Obj shortbox(executionPath + "/assets/models/cornellbox/shortbox.obj");
+    resource::Obj tallbox(executionPath + "/assets/models/cornellbox/tallbox.obj");
+    resource::Obj light(executionPath + "/assets/models/cornellbox/light.obj");
 
     //bing transform to mesh
 
@@ -151,7 +153,7 @@ int main()
     //     }
     // }
 
-    std::string outPutFilePath = "out/imageSpp";
+    std::string outPutFilePath = executionPath + "/out/imageSpp";
     outPutFilePath += std::to_string(spp);
     outPutFilePath += ".ppm";
 

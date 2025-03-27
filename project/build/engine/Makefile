@@ -206,6 +206,33 @@ source/core/ray.cpp.s:
 	cd /home/muxin/Desktop/PathTracing/project/build && $(MAKE) -f engine/CMakeFiles/engine_lib.dir/build.make engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.s
 .PHONY : source/core/ray.cpp.s
 
+source/platform/linux/platform_utils.o: source/platform/linux/platform_utils.cpp.o
+
+.PHONY : source/platform/linux/platform_utils.o
+
+# target to build an object file
+source/platform/linux/platform_utils.cpp.o:
+	cd /home/muxin/Desktop/PathTracing/project/build && $(MAKE) -f engine/CMakeFiles/engine_lib.dir/build.make engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o
+.PHONY : source/platform/linux/platform_utils.cpp.o
+
+source/platform/linux/platform_utils.i: source/platform/linux/platform_utils.cpp.i
+
+.PHONY : source/platform/linux/platform_utils.i
+
+# target to preprocess a source file
+source/platform/linux/platform_utils.cpp.i:
+	cd /home/muxin/Desktop/PathTracing/project/build && $(MAKE) -f engine/CMakeFiles/engine_lib.dir/build.make engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.i
+.PHONY : source/platform/linux/platform_utils.cpp.i
+
+source/platform/linux/platform_utils.s: source/platform/linux/platform_utils.cpp.s
+
+.PHONY : source/platform/linux/platform_utils.s
+
+# target to generate assembly for a file
+source/platform/linux/platform_utils.cpp.s:
+	cd /home/muxin/Desktop/PathTracing/project/build && $(MAKE) -f engine/CMakeFiles/engine_lib.dir/build.make engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.s
+.PHONY : source/platform/linux/platform_utils.cpp.s
+
 source/rendering/rendering.o: source/rendering/rendering.cpp.o
 
 .PHONY : source/rendering/rendering.o
@@ -440,6 +467,9 @@ help:
 	@echo "... source/core/ray.o"
 	@echo "... source/core/ray.i"
 	@echo "... source/core/ray.s"
+	@echo "... source/platform/linux/platform_utils.o"
+	@echo "... source/platform/linux/platform_utils.i"
+	@echo "... source/platform/linux/platform_utils.s"
 	@echo "... source/rendering/rendering.o"
 	@echo "... source/rendering/rendering.i"
 	@echo "... source/rendering/rendering.s"

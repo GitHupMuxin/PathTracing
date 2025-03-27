@@ -7,6 +7,7 @@ app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/core/
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/core/vector.h
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/core/vector_defination.h
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/core/vector_inl.hpp
+app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/platform/platform_utils.h
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/rendering/rendering.h
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/rendering/rendering_utils.h
 app/CMakeFiles/PathTracing.dir/source/main.cpp.o: ../engine/include/engine/resource/object.h

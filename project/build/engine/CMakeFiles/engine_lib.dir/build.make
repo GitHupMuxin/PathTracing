@@ -200,6 +200,19 @@ engine/CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.s"
 	cd /home/muxin/Desktop/PathTracing/project/build/engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/muxin/Desktop/PathTracing/project/engine/source/scene/scene_object.cpp -o CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.s
 
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o: engine/CMakeFiles/engine_lib.dir/flags.make
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o: ../engine/source/platform/linux/platform_utils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/muxin/Desktop/PathTracing/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o"
+	cd /home/muxin/Desktop/PathTracing/project/build/engine && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o -c /home/muxin/Desktop/PathTracing/project/engine/source/platform/linux/platform_utils.cpp
+
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.i"
+	cd /home/muxin/Desktop/PathTracing/project/build/engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/muxin/Desktop/PathTracing/project/engine/source/platform/linux/platform_utils.cpp > CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.i
+
+engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.s"
+	cd /home/muxin/Desktop/PathTracing/project/build/engine && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/muxin/Desktop/PathTracing/project/engine/source/platform/linux/platform_utils.cpp -o CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.s
+
 # Object files for target engine_lib
 engine_lib_OBJECTS = \
 "CMakeFiles/engine_lib.dir/source/core/core_utils.cpp.o" \
@@ -212,30 +225,32 @@ engine_lib_OBJECTS = \
 "CMakeFiles/engine_lib.dir/source/scene/bounding_box.cpp.o" \
 "CMakeFiles/engine_lib.dir/source/scene/bounding_tree.cpp.o" \
 "CMakeFiles/engine_lib.dir/source/scene/scene.cpp.o" \
-"CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.o"
+"CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.o" \
+"CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o"
 
 # External object files for target engine_lib
 engine_lib_EXTERNAL_OBJECTS =
 
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/core_utils.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/random_queue.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/rendering/rendering_utils.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/resource/object.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/resource/resource_utils.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/bounding_box.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/bounding_tree.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/scene.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.o
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/build.make
-engine/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/muxin/Desktop/PathTracing/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library libengine_lib.a"
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/core_utils.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/random_queue.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/core/ray.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/rendering/rendering.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/rendering/rendering_utils.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/resource/object.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/resource/resource_utils.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/bounding_box.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/bounding_tree.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/scene.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/scene/scene_object.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/source/platform/linux/platform_utils.cpp.o
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/build.make
+Release/lib/libengine_lib.a: engine/CMakeFiles/engine_lib.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/muxin/Desktop/PathTracing/project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library ../Release/lib/libengine_lib.a"
 	cd /home/muxin/Desktop/PathTracing/project/build/engine && $(CMAKE_COMMAND) -P CMakeFiles/engine_lib.dir/cmake_clean_target.cmake
 	cd /home/muxin/Desktop/PathTracing/project/build/engine && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/engine_lib.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-engine/CMakeFiles/engine_lib.dir/build: engine/libengine_lib.a
+engine/CMakeFiles/engine_lib.dir/build: Release/lib/libengine_lib.a
 
 .PHONY : engine/CMakeFiles/engine_lib.dir/build
 

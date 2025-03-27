@@ -8,6 +8,7 @@ app/CMakeFiles/PathTracing.dir/source/main.cpp.o
  ../engine/include/engine/core/vector.h
  ../engine/include/engine/core/vector_defination.h
  ../engine/include/engine/core/vector_inl.hpp
+ ../engine/include/engine/platform/platform_utils.h
  ../engine/include/engine/rendering/rendering.h
  ../engine/include/engine/rendering/rendering_utils.h
  ../engine/include/engine/resource/object.h

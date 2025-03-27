@@ -5,9 +5,23 @@ file(GLOB_RECURSE ENGINE_SOURCES
     "source/rendering/*.cpp"
 )
 
+if (WIN32)
+    message(STATUS "Building for windows")
+    file(GLOB_RECURSE PLATFORM_SOURCES
+        "source/platform/windows/platform_utils.cpp"
+    )
+elseif(UNIX AND NOT APPLE)
+    message(STATUS "Building for linux")
+    file(GLOB_RECURSE PLATFORM_SOURCES
+        "source/platform/linux/platform_utils.cpp"
+    )
+else()
+    message(FATAL_ERROR "Unsupported platform")
+endif()
+
 add_library(engine_lib STATIC)
 
-target_sources(engine_lib PRIVATE ${ENGINE_SOURCES})
+target_sources(engine_lib PRIVATE ${ENGINE_SOURCES} ${PLATFORM_SOURCES})
 
 # message(STATUS "Engibe sources: ${ENGINE_SOURCES}")
 

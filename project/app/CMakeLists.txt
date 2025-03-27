@@ -7,7 +7,17 @@ target_sources(PathTracing PRIVATE
 target_link_libraries(PathTracing PRIVATE engine_lib)
 
 add_custom_command(TARGET PathTracing POST_BUILD 
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    "${CMAKE_CURRENT_SOURCE_DIR}/assets" 
-    $<TARGET_FILE_DIR:PathTracing>/assets
+    COMMAND "${CMAKE_COMMAND}" 
+    -E make_directory
+    "$<TARGET_FILE_DIR:PathTracing>/out"
+    COMMENT "Creating directory: out"
 )
+
+add_custom_command(TARGET PathTracing POST_BUILD 
+    COMMAND "${CMAKE_COMMAND}" 
+    -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/assets" 
+    "$<TARGET_FILE_DIR:PathTracing>/assets"
+    COMMENT "Copying assets to assets(build) folder"
+)
+
