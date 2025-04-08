@@ -1,0 +1,19 @@
+{
+    "scene": {
+        "name": "Forest",
+        "width": 1920,
+        "height": 1080,
+        "objects": [
+            {
+                "type": "tree",
+                "position": [10.5, 2.0, -5.3],
+                "scale": 1.5
+            },
+            {
+                "type": "rock",
+                "position": [5.0, 0.0, 3.2],
+                "scale": 0.8
+            }
+        ]
+    }
+}

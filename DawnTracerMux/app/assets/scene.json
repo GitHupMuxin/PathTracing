@@ -1,0 +1,100 @@
+{
+    "spp" : 1,
+    "scene" : 
+    {
+        "name" : "cornellbox",
+        "width" : 784,
+        "height" : 784,
+        "camera" : 
+        [
+            {
+                "eye_point" : [278, 273, -800],
+                "lookAt" : [278, 273, -799],
+                "up" : [0.0, 1.0, 0.0],
+                "fov" : 40
+            }
+        ],   
+        "objects" :
+        [
+            {
+                "name" : "floor",
+                "path" : "models/cornellbox/floor.obj",
+                "material" : "white"
+            },
+            {
+                "name" : "left",
+                "path" : "models/cornellbox/left.obj",
+                "material" : "red"
+            },
+            {
+                "name" : "right",
+                "path" : "models/cornellbox/right.obj",
+                "material" : "green"
+            },
+            {
+                "name" : "shortbox",
+                "path" : "models/cornellbox/shortbox.obj",
+                "material" : "white"
+            },
+            {   
+                "name" : "tallbox",
+                "path" : "models/cornellbox/tallbox.obj",
+                "material" : "white"
+            },
+            {
+                "name" : "light",
+                "path" : "models/cornellbox/light.obj",
+                "material" : "light"
+            }
+        ],
+        "material" : 
+        [
+            {
+                "name" : "red",
+                "ka" : [0.0, 0.0, 0.0],
+                "kd" : [0.63, 0.065, 0.005],
+                "ks" : [0.0, 0.0, 0.0],
+                "ke" : [0.0, 0.0, 0.0],
+                "ns" : 0.0,
+                "ni" : 0.0,
+                "d" : 0.0,
+                "i" : 0
+            },
+            {
+                "name" : "green",
+                "ka" : [0.0, 0.0, 0.0],
+                "kd" : [0.14, 0.45, 0.091],
+                "ks" : [0.0, 0.0, 0.0],
+                "ke" : [0.0, 0.0, 0.0],
+                "ns" : 0.0,
+                "ni" : 0.0,
+                "d" : 0.0,
+                "i" : 0
+            },
+            {
+                "name" : "white",
+                "ka" : [0.0, 0.0, 0.0],
+                "kd" : [0.725, 0.71, 0.68],
+                "ks" : [0.0, 0.0, 0.0],
+                "ke" : [0.0, 0.0, 0.0],
+                "ns" : 0.0,
+                "ni" : 0.0,
+                "d" : 0.0,
+                "i" : 0
+            },
+            {
+                "name" : "light",
+                "ka" : [0.0, 0.0, 0.0],
+                "kd" : [0.65, 0.65, 0.65],
+                "ks" : [0.0, 0.0, 0.0],
+                "ke" : [0.0, 0.0, 0.0],
+                "ns" : 0.0,
+                "ni" : 0.0,
+                "d" : 0.0,
+                "i" : 0,
+                "self_illuminating" : true,
+                "illuminate" : [47.8348, 38.5664, 31.0808]
+            }
+        ]
+    }
+}
