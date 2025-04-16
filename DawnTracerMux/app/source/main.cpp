@@ -3,6 +3,7 @@
 #include "engine/platform/platform_utils.h"
 #include "engine/core/math/vector_defination.h"
 #include "engine/core/math/random_queue.h"
+#include "engine/core/thread/thread_pool.h"
 #include "engine/core/core_utils.h"
 #include "engine/resource/object.h"
 #include "engine/resource/resource_maneger.h"

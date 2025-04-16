@@ -5,7 +5,8 @@ namespace platform
 {
     class NormalSystemConfig
     {
-        static constexpr unsigned int        GetSystemHardwareConcurrency();
+        public:
+            static unsigned int        GetSystemHardwareConcurrency();
     };
 
 }

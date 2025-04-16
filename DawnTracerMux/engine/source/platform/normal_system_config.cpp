@@ -3,7 +3,7 @@
 
 namespace platform
 {
-    constexpr unsigned int NormalSystemConfig::GetSystemHardwareConcurrency()
+    unsigned int NormalSystemConfig::GetSystemHardwareConcurrency()
     {
         return std::thread::hardware_concurrency();
     }
