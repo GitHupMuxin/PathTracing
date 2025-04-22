@@ -15,34 +15,39 @@ namespace core
             class Worker
             {
                 public:
-                    ThreadPool* threadPool;
-                    std::unique_ptr<std::thread> worker_;
-                    Worker(std::function<void()> workerMain);
+                    ThreadPool*                                     threadPool;
+                    std::unique_ptr<std::thread>                    worker_;
+                    Worker(std::function<void()>&& workerMain);
             };
-            void WorkerMain();
+            void                                                    WorkerMain();
             
             class Job
             {
                 private:
                     std::unique_ptr<std::function<void()>> func_;        
+                    
                 public:
                     Job() = default;
-                    Job(std::unique_ptr<std::function<void()>>& func);
+                    Job(std::unique_ptr<std::function<void()>>&& func);
                     void operator() ();
             };
 
+            bool                                                    shutdown_;
+            mutable std::mutex                                      mtx;
+            mutable std::mutex                                      wiatAllMtx;
+            std::condition_variable                                 notifyJobQueue_;
+            ThreadSafeQueue<Job>                                    jobsQueue_;
+            std::vector<Worker>                                     workers_;
+            std::condition_variable                                 condition;
+            static std::unique_ptr<ThreadPool>                      instance_;
 
-            mutable std::mutex mtx;
-            std::condition_variable notifyJobQueue_;
-            bool shutdown_;
-            ThreadSafeQueue<Job> jobsQueue_;
-            std::vector<Worker> workers_;
-
-            static std::unique_ptr<ThreadPool> instance_;
         public:
             ThreadPool();
+            ~ThreadPool();
+            void                                                    WaiteAll();
+            void                                                    ShutDownAllThreads();
 
-            ThreadPool* GetInstance();
+            static ThreadPool*                                      GetInstance();
 
             template<typename F, typename ...Args>
             auto Commit(F&& f, Args&& ...args) -> std::future<decltype(f(args...))>
@@ -60,8 +65,10 @@ namespace core
 
                 this->notifyJobQueue_.notify_one();
 
-                return task.get_future();
+                return task->get_future();
             }
+
+
     };
 
 }

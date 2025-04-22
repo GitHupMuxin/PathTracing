@@ -13,19 +13,19 @@ namespace core
             private:
                 FreeList buckets_[MAX_FREE_LIST_NUM];
 
-                static size_t MemoryAlignment(size_t size) noexcept;
-                static size_t MemoryAlignment(size_t size, size_t alignNum) noexcept;
+                static size_t       MemoryAlignment(size_t size) noexcept;
+                static size_t       MemoryAlignment(size_t size, size_t alignNum) noexcept;
 
 
-                void AskMemoryForCenterCache(size_t index, size_t alignNum);
+                void                AskMemoryForCenterCache(size_t index, size_t alignNum);
             public:
                 ThreadCache();
                 ~ThreadCache();
-                void DeallocateAll();
-                void* Allocate(size_t size);
-                void Deallocate(void* memory, size_t size) noexcept;
-                void GiveBackToCentralCache(FreeList& list, size_t size);
-                void Show() const noexcept;
+                void                DeallocateAll();
+                void*               Allocate(size_t size);
+                void                Deallocate(void* memory, size_t size) noexcept;
+                void                GiveBackToCentralCache(FreeList& list, size_t size);
+                void                Show() const noexcept;
             
         };
 

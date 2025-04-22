@@ -3,18 +3,15 @@
 
 namespace core
 {
-    RandomQueue* RandomQueue::instance = nullptr;
-
     RandomQueue* RandomQueue::GetInstance()
     {
-        if (instance == nullptr)
-            instance = new RandomQueue();
-        return instance;
+        static RandomQueue instance;
+        return &instance;
     } 
 
     void RandomQueue::PushRandomNum()
     {
-        int t = 10;
+        int t = 100;
         while (t--)
         {
 
@@ -22,28 +19,48 @@ namespace core
             static std::mt19937 gen(rd());
             static std::uniform_real_distribution<float> dis(0.0f, 1.0f);
 
-            this->numQue.push(dis(gen));
+            this->numQue_.push(dis(gen));
         }
     }
 
     float RandomQueue::GetRandomNum()
     {
-        if (this->numQue.empty())
+        if (this->numQue_.empty())
             this->PushRandomNum();
-        float temp = this->numQue.front();
-        this->numQue.pop();
+        float temp = this->numQue_.front();
+        this->numQue_.pop();
         return temp;
     }
 
-    RandomQueue::RandomQueue() { }
-
-    RandomQueue::~RandomQueue()
+    ThreadSafeRandomQueue* ThreadSafeRandomQueue::GetInstance()
     {
-        if (instance != nullptr)
-            delete instance;
+        static ThreadSafeRandomQueue instance;
+        return &instance;
+    } 
+
+    void ThreadSafeRandomQueue::PushRandomNum()
+    {
+        int t = 100;
+        while (t--)
+        {
+
+            static std::random_device rd;
+            static std::mt19937 gen(rd());
+            static std::uniform_real_distribution<float> dis(0.0f, 1.0f);
+
+            this->numQue_.push(dis(gen));
+        }
     }
 
-
+    float ThreadSafeRandomQueue::GetRandomNum()
+    {
+        std::unique_lock gl(this->mtx);
+        if (this->numQue_.empty())
+            this->PushRandomNum();
+        float temp = this->numQue_.front();
+        this->numQue_.pop();
+        return temp;
+    }
 
 }
 

@@ -9,8 +9,6 @@ namespace core
 {
     namespace memory
     {
-        std::shared_ptr<CentralCache> CentralCache::instance_(new CentralCache); 
-        
         CentralCache::CentralCache() { }
 
         Span* CentralCache::GetOneSpan(SpanList& list, size_t size)
@@ -30,7 +28,7 @@ namespace core
             if (result == nullptr)
             {
                 size_t pageSize = MemoryUtils::SizeToPage(size);
-                Span* span = PageCache::GetInstance().get()->OfferASpan(pageSize);
+                Span* span = PageCache::GetInstance()->OfferASpan(pageSize);
 
                 char* star = (char*)(span->pageID_ << PAGE_CACHE_PAGE_SIZE_SHIFT);
                 char* end = (char*)(star + (span->n_ << PAGE_CACHE_PAGE_SIZE_SHIFT));
@@ -55,9 +53,10 @@ namespace core
             return result;
         }
 
-        std::shared_ptr<CentralCache> CentralCache::GetInstance() noexcept
+        CentralCache* CentralCache::GetInstance() noexcept
         {
-            return CentralCache::instance_;
+            static CentralCache instance;
+            return &instance;
         }
 
 
@@ -95,7 +94,7 @@ namespace core
             {
                 void* next = MemoryUtils::GetNextObject(star);
 
-                Span* span = PageCache::GetInstance().get()->MapObjectToSpan(star);
+                Span* span = PageCache::GetInstance()->MapObjectToSpan(star);
 
                 MemoryUtils::GetNextObject(star) = span->freeList_;
                 span->freeList_ = star;
@@ -108,7 +107,7 @@ namespace core
                     span->nextSpan_ = nullptr;
                     span->previousSpan_ = nullptr;
                     span->used_ = false;
-                    PageCache::GetInstance().get()->ReleaseSpanToPageCache(span);
+                    PageCache::GetInstance()->ReleaseSpanToPageCache(span);
                 }
 
                 star = next;
@@ -122,7 +121,7 @@ namespace core
             {
                 void* next = MemoryUtils::GetNextObject(star);
 
-                Span* span = PageCache::GetInstance().get()->MapObjectToSpan(star);
+                Span* span = PageCache::GetInstance()->MapObjectToSpan(star);
 
                 MemoryUtils::GetNextObject(star) = span->freeList_;
                 span->freeList_ = star;
@@ -135,7 +134,7 @@ namespace core
                     span->nextSpan_ = nullptr;
                     span->previousSpan_ = nullptr;
                     span->used_ = false;
-                    PageCache::GetInstance().get()->ReleaseSpanToPageCache(span);
+                    PageCache::GetInstance()->ReleaseSpanToPageCache(span);
                 }
 
                 star = next;

@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <iostream>
 #include "engine/platform/platform_utils.h"
+#include <vector>
 
 namespace platform
 {
@@ -63,6 +64,37 @@ namespace platform
         VirtualFree(ptr, 0, MEM_RELEASE);
     }
 
+    size_t PlatformUtils::GetCacheLineSize()
+    {
+        DWORD buffer_size = 0;
+        std::vector<SYSTEM_LOGICAL_PROCESSOR_INFORMATION> buffer;
+
+        // 第一次调用获取所需缓冲区大小
+        if (!GetLogicalProcessorInformation(nullptr, &buffer_size)) {
+            if (GetLastError() != ERROR_INSUFFICIENT_BUFFER) {
+                return 64; // 默认值
+            }
+        }
+
+        // 分配缓冲区
+        buffer.resize(buffer_size / sizeof(SYSTEM_LOGICAL_PROCESSOR_INFORMATION));
+        if (!GetLogicalProcessorInformation(buffer.data(), &buffer_size)) {
+            return 64; // 默认值
+        }
+
+        // 遍历所有逻辑处理器信息
+        for (const auto& info : buffer) {
+            if (info.Relationship == RelationCache) {
+                const CACHE_DESCRIPTOR& cache = info.Cache;
+                // 查找 L1 数据缓存
+                if (cache.Level == 1 && cache.Type == CacheData) {
+                    return cache.LineSize;
+                }
+            }
+        }
+
+        return 64; // 默认值（常见 x86 架构）
+    }
 
 }
 #endif

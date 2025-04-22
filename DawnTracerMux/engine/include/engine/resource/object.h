@@ -6,12 +6,11 @@
 #include <fstream>
 #include "engine/core/math/vector_defination.h"
 #include "engine/core/ray.h"
+#include "shaders/shader.h"
 
 
 namespace resource
 {
-    class Material;
-
     class Vertex
     {
         public:
@@ -40,28 +39,7 @@ namespace resource
             Texture(std::string path);
     };
 
-    class Shader
-    {
-        public:
-            struct ShaderInput
-            {   
-                core::Vector3f  wi;
-                core::Vector3f  n;
-                Material*       m;
-            };
-            
-            struct ShaderOutput
-            {
-                core::Vector3f wo = core::Vector3f(0.0f);
-                core::Vector3f BRDF = core::Vector3f(0.0f);
-                float pdf = 0;    
-                ShaderOutput() = default;
-            };
-            std::function<core::Vector3f(const core::Vector3f& wi, const core::Vector3f& n)>                            Sample;
-            std::function<float(const core::Vector3f& wi, const core::Vector3f& wo, const core::Vector3f& n)>           Pdf;
-            std::function<core::Vector3f(const core::Vector3f& wi, const core::Vector3f& wo, const core::Vector3f& n, const Material* m)>  GetBRDF;
-            std::function<ShaderOutput(ShaderInput&)>                                                                   shader_;
-    };
+    
 
 
     class Material
@@ -88,16 +66,17 @@ namespace resource
             std::string     map_d_;//Alpha Texture Map;
             std::string     map_bump_;//Bump Map;
 
-            Shader*          shader_;
+            ShaderBase*     shader_;
 
             Material();
             Material(const std::string& Name);
-            Material(const std::string& Name, const core::Vector3f& ka, const core::Vector3f& kd, const core::Vector3f& ks, const core::Vector3f& ke, float ns, float ni, float dd, int i, bool self_illuminating = false, const core::Vector3f& illuminate = core::Vector3f(0.0));
+            Material(const std::string& Name, const core::Vector3f& ka, const core::Vector3f& kd, const core::Vector3f& ks, const core::Vector3f& ke, float ns, float ni, float dd, int i, bool self_illuminating = false, const core::Vector3f& illuminate = core::Vector3f(0.0), const std::string& shader = "default");
             Material(const Material& m);
             Material(const Material* m);
 
+            void InitShader(ShaderBase* shader);
+            void InitShader(const std::string& str = "default");
             void Clear();
-
             void Show() const;
     };
 
@@ -114,10 +93,10 @@ namespace resource
             Mesh();
             Mesh(const std::string& mN);
             
-            void                SetUniqueID(unsigned int ID);
-            const unsigned int  GetUniqueID();
-            void                BingMesh(const std::string& mN);
-            void                Show() const;
+            void                    SetUniqueID(unsigned int ID);
+            const unsigned int      GetUniqueID();
+            void                    BingMesh(const std::string& mN);
+            void                    Show() const;
     };
 
     struct Transform
@@ -130,11 +109,12 @@ namespace resource
     class Obj
     {  
         private:
-            void InitMeshMaterial();
-            bool MaterialFileLoder(const std::string& path);
-            void Rotate(const core::Vector3f& rota);
-            void Transform(const core::Vector3f& trans);
-            void Scale(const core::Vector3f& scale);
+            void                    InitMeshMaterial();
+            bool                    MaterialFileLoder(const std::string& path);
+            void                    Rotate(const core::Vector3f& rota);
+            void                    Transform(const core::Vector3f& trans);
+            void                    Scale(const core::Vector3f& scale);
+
         public:
             std::string             path_;
             std::vector<Mesh>       meshes_;
@@ -142,9 +122,9 @@ namespace resource
             Obj();
             Obj(const std::string& path);
             Obj(const Obj& obj);
-            bool ObjFileLoder(const std::string& path);
-            void ResetMaterial(Material* m);
-            void Show() const;
+            bool                    ObjFileLoder(const std::string& path);
+            void                    ResetMaterial(Material* m);
+            void                    Show() const;
     };
 
     

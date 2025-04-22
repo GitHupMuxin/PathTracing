@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include "engine/resource/object.h"
+#include "engine/resource/resource_maneger.h"
 #include "engine/resource/resource_utils.h"
 
 
@@ -77,19 +78,40 @@ namespace resource
     }
 
 
-    Material::Material() { }
+    Material::Material() 
+    {   
+        this->InitShader();
+    }
 
     Material::Material(const std::string& Name) : 
-                        materialName_(Name), self_illuminating_(false), illuminate_(0.0), Ka_(0.0), Kd_(0.0), Ks_(0.0), Ke_(0.0), Ns_(0.0), Ni_(0.0), d_(0.0), illum_(0){ }
+                        materialName_(Name), self_illuminating_(false), illuminate_(0.0), Ka_(0.0), Kd_(0.0), Ks_(0.0), Ke_(0.0), Ns_(0.0), Ni_(0.0), d_(0.0), illum_(0)
+    {
+        this->InitShader();
+    }
 
-    Material::Material(const std::string& Name, const core::Vector3f& ka, const core::Vector3f& kd, const core::Vector3f& ks, const core::Vector3f& ke, float ns, float ni, float dd, int i, bool self_illuminating, const core::Vector3f& illuminate) : 
-                        materialName_(Name), self_illuminating_(self_illuminating), illuminate_(illuminate), Ka_(ka), Kd_(kd), Ks_(ks), Ke_(ke), Ns_(ns), Ni_(ni), d_(dd), illum_(i){ }
+    Material::Material(const std::string& Name, const core::Vector3f& ka, const core::Vector3f& kd, const core::Vector3f& ks, const core::Vector3f& ke, float ns, float ni, float dd, int i, bool self_illuminating, const core::Vector3f& illuminate, const std::string& shaderName) : 
+                        materialName_(Name), self_illuminating_(self_illuminating), illuminate_(illuminate), Ka_(ka), Kd_(kd), Ks_(ks), Ke_(ke), Ns_(ns), Ni_(ni), d_(dd), illum_(i)
+    {
+        this->InitShader(shaderName);
+    }
 
     Material::Material(const Material& m) : 
-                        materialName_(m.materialName_), self_illuminating_(m.self_illuminating_), illuminate_(m.illuminate_), Ka_(m.Ka_), Kd_(m.Kd_), Ks_(m.Ks_), Ke_(m.Ke_), Ns_(m.Ns_), Ni_(m.Ni_), d_(m.d_), illum_(m.illum_) { }
+                        materialName_(m.materialName_), self_illuminating_(m.self_illuminating_), illuminate_(m.illuminate_), Ka_(m.Ka_), Kd_(m.Kd_), Ks_(m.Ks_), Ke_(m.Ke_), Ns_(m.Ns_), Ni_(m.Ni_), d_(m.d_), illum_(m.illum_), shader_(m.shader_) { }
 
     Material::Material(const Material* m) : 
-                        materialName_(m->materialName_), self_illuminating_(m->self_illuminating_), illuminate_(m->illuminate_), Ka_(m->Ka_), Kd_(m->Kd_), Ks_(m->Ks_), Ke_(m->Ke_), Ns_(m->Ns_), Ni_(m->Ni_), d_(m->d_), illum_(m->illum_) { }
+                        materialName_(m->materialName_), self_illuminating_(m->self_illuminating_), illuminate_(m->illuminate_), Ka_(m->Ka_), Kd_(m->Kd_), Ks_(m->Ks_), Ke_(m->Ke_), Ns_(m->Ns_), Ni_(m->Ni_), d_(m->d_), illum_(m->illum_), shader_(m->shader_) { }
+
+    void Material::InitShader(ShaderBase* shader)
+    {
+        this->shader_ = shader;
+    }
+
+    void Material::InitShader(const std::string& str)
+    {
+        this->shader_ = ResourceManeger::GetInstance()->FindShader(str).get();
+        if (this->shader_ == nullptr)
+            throw std::runtime_error("cannot find shader.\n");
+    }
 
     void Material::Clear()
     {
@@ -197,6 +219,7 @@ namespace resource
 
             if (input[0] == "newmtl")
             {
+                
                 if (firstOne)
                 {
                     firstOne = false;

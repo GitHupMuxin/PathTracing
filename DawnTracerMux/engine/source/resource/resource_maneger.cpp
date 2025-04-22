@@ -6,8 +6,6 @@
 
 namespace resource
 {
-    std::shared_ptr<ResourceManeger> ResourceManeger::instance_(new ResourceManeger);
-
     void ResourceManeger::LodeJson(const std::string& path)
     {
         try {
@@ -27,27 +25,24 @@ namespace resource
             int width = scene_data["scene"]["width"];
             int height = scene_data["scene"]["height"];
             float spp = scene_data["spp"];
-
+            this->width_ = width;
+            this->height_ = height;
+            this->spp_ = spp;
             std::cout << "scene name: " << scene_name << std::endl;
             std::cout << "width:" << width << "    height:" << height << std::endl;
 
             const auto& CameraJson = scene_data["scene"]["camera"].front();            
-            std::cout << CameraJson.contains("eye_point") << "\n";
-            this->camera.eye_point_ = core::Vector3f(CameraJson["eye_point"].get<std::vector<float>>());
-            this->camera.lookAt_ = core::Vector3f(CameraJson["lookAt"].get<std::vector<float>>());
-            this->camera.up_ = core::Vector3f(CameraJson["up"].get<std::vector<float>>());
-            this->camera.fov_ = CameraJson["fov"].get<float>();
+            this->camera_.eye_point_ = core::Vector3f(CameraJson["eye_point"].get<std::vector<float>>());
+            this->camera_.lookAt_ = core::Vector3f(CameraJson["lookAt"].get<std::vector<float>>());
+            this->camera_.up_ = core::Vector3f(CameraJson["up"].get<std::vector<float>>());
+            this->camera_.fov_ = CameraJson["fov"].get<float>();
 
             for (const auto& material : scene_data["scene"]["material"])
             {
                 std::string materialName = material["name"];
-
+                std::string objectShaderName = material["shader"];
                 bool self_illuminating = material.contains("self_illuminating") ? true : false;
-
                 core::Vector3f illuminate = material.contains("illuminate") ? core::Vector3f(material["illuminate"].get<std::vector<float>>()) : core::Vector3f(0.0);
-
-
-
 
                 std::shared_ptr<Material> m = std::make_shared<Material>(materialName,               
                                     core::Vector3f(material["ka"].get<std::vector<float>>()),  
@@ -59,10 +54,11 @@ namespace resource
                                     float(material["d"].get<float>()),
                                     float(material["i"].get<float>()),
                                     self_illuminating,
-                                    illuminate
+                                    illuminate,
+                                    objectShaderName
                                     );
 
-                this->materialsMap.insert(std::make_pair(materialName, std::move(m)));
+                this->materialsMap_.insert(std::make_pair(materialName, std::move(m)));
             }
 
             for (const auto& object : scene_data["scene"]["objects"])
@@ -72,8 +68,8 @@ namespace resource
                 std::shared_ptr<Obj> obj(new Obj);
                 obj->ObjFileLoder(subPath + "/" + PATH);
                 if (object.contains("material"))
-                    obj->ResetMaterial(this->materialsMap[object["material"].get<std::string>()].get());
-                this->objectsMap.insert(std::make_pair(objectName, std::move(obj)));
+                    obj->ResetMaterial(this->materialsMap_[object["material"].get<std::string>()].get());
+                this->objectsMap_.insert(std::make_pair(objectName, std::move(obj)));
             }
 
             
@@ -124,9 +120,10 @@ namespace resource
     }
 
 
-    std::shared_ptr<ResourceManeger> ResourceManeger::GetInstance()
+    ResourceManeger* ResourceManeger::GetInstance()
     {
-        return ResourceManeger::instance_;
+        static ResourceManeger instance;
+        return &instance;
     }
 
     void ResourceManeger::LodeSceneFile(const std::string& path)
@@ -136,22 +133,37 @@ namespace resource
         if (path.substr(n - 5, n) == ".json")
             this->LodeJson(path);
         else if (path.substr(n - 4, n) == ".xml")
-            this->LodeJson(path);
+            this->LodeXML(path);
         else 
             throw std::runtime_error("wrong path Input.");
     }
 
+    void ResourceManeger::AddShader(const std::string& str, std::shared_ptr<ShaderBase> shader)
+    {
+        //if (this->shadersMap_.count(str))
+            //throw std::runtime_error("shader name has been exist.\n");
+        this->shadersMap_.insert(std::make_pair(str, std::move(shader)));
+    }
+
     const std::shared_ptr<Obj> ResourceManeger::FindObject(const std::string& name) const noexcept
     {
-        if (this->objectsMap.count(name))
-            return this->objectsMap.find(name)->second;
+        if (this->objectsMap_.count(name))
+            return this->objectsMap_.find(name)->second;
         return nullptr;
     }
 
     const std::shared_ptr<Material> ResourceManeger::FindMaterial(const std::string& name) const noexcept
     {
-        if (this->materialsMap.count(name))
-            return this->materialsMap.find(name)->second;
+        if (this->materialsMap_.count(name))
+            return this->materialsMap_.find(name)->second;
+        return nullptr;
+    }
+
+    const std::shared_ptr<ShaderBase> ResourceManeger::FindShader(const std::string& name) const noexcept
+    {
+        auto shader = this->shadersMap_.find(name);
+        if (shader != this->shadersMap_.end())
+            return shader->second;
         return nullptr;
     }
 
@@ -179,10 +191,22 @@ namespace resource
         return result;
     }
 
+    const std::vector<std::shared_ptr<ShaderBase>> ResourceManeger::FindShader(const std::vector<std::string>& nameLists) const noexcept
+    {
+        std::vector<std::shared_ptr<ShaderBase>> result = { };
+        for (const std::string& name : nameLists)
+        {
+            std::shared_ptr<ShaderBase> shader(this->FindShader(name));
+            if (shader.get())
+                result.emplace_back(shader);
+        }
+        return result;
+    }
+
     const std::vector<std::shared_ptr<Obj>> ResourceManeger::GetAllObjects() const noexcept
     {
         std::vector<std::shared_ptr<Obj>> result = { };
-        for (auto& it : this->objectsMap)
+        for (auto& it : this->objectsMap_)
             if (it.second)
                 result.emplace_back(it.second);
         return result;
@@ -191,20 +215,39 @@ namespace resource
     const std::vector<std::shared_ptr<Material>> ResourceManeger::GetAllMaterial() const noexcept
     {
         std::vector<std::shared_ptr<Material>> result = { };
-        for (auto& it : this->materialsMap)
+        for (auto& it : this->materialsMap_)
             if (it.second)
                 result.emplace_back(it.second);   
         return result;
     }
+    const Camera ResourceManeger::GetCamera() const noexcept
+    {
+        return this->camera_;
+    }
 
+    const int ResourceManeger::GetSpp() const noexcept
+    {
+        return this->spp_;
+    }
+
+    const int ResourceManeger::GetScreenWidth() const noexcept
+    {
+        return this->width_;
+    }
+
+    const int ResourceManeger::GetScreenHeight() const noexcept
+    {
+        return this->height_;
+    }
+    
     const int ResourceManeger::GetResourceObjectSize() const noexcept
     {
-        return this->objectsMap.size();
+        return this->objectsMap_.size();
     }
     
     const int ResourceManeger::GetResourceMaterialSize() const noexcept
     {
-        return this->materialsMap.size();   
+        return this->materialsMap_.size();   
     }
 
 

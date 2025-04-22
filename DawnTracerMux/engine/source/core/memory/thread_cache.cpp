@@ -53,7 +53,7 @@ namespace core
             void* star = nullptr;
             void* end = nullptr;
 
-            size_t recvSize = CentralCache::GetInstance().get()->OfferRangeMemory(star, end, number, alignSize);
+            size_t recvSize = CentralCache::GetInstance()->OfferRangeMemory(star, end, number, alignSize);
 
             this->buckets_[index].PushRange(star, end, recvSize);
         }
@@ -67,7 +67,7 @@ namespace core
                 void* star = nullptr;
                 void* end = nullptr;
                 this->buckets_[i].PopRange(star, end, this->buckets_[i].freeSize_);
-                CentralCache::GetInstance().get()->ReleaseListToSpansByIndex(star, i);
+                CentralCache::GetInstance()->ReleaseListToSpansByIndex(star, i);
             }
         }
 
@@ -105,7 +105,7 @@ namespace core
             void* end = nullptr;
             list.PopRange(star, end, list.GetUpperBound_());
 
-            CentralCache::GetInstance().get()->ReleaseListToSpans(star, size);
+            CentralCache::GetInstance()->ReleaseListToSpans(star, size);
         }
         
         void ThreadCache::Show() const noexcept

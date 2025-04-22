@@ -1,7 +1,9 @@
 #include <string>
 #include <chrono>
+#include <atomic>
 #include "engine/core/math/vector_defination.h"
 #include "engine/core/math/random_queue.h"
+#include "engine/core/thread/thread_pool.h"
 #include "engine/resource/object.h"
 #include "engine/scene/bounding_tree.h"
 #include "engine/rendering/rendering.h"
@@ -12,7 +14,7 @@
 namespace rendering
 {
 
-    scene::Intersection Renderpipeline::Light::Sample(const core::Vector3f& shaderPoint, float& pdf)
+    scene::Intersection RenderPipeline::Light::Sample(const core::Vector3f& shaderPoint, float& pdf)
     {
         scene::Intersection intersection = {};
 
@@ -22,7 +24,7 @@ namespace rendering
 
         for (int i = 0; i < this->lightObjectData_.size(); i++)
         {
-            Renderpipeline::Light::LightTriangleData& data = lightObjectData_[i];
+            RenderPipeline::Light::LightTriangleData& data = lightObjectData_[i];
             core::Vector3f w = (shaderPoint - data.inner_).GetNormalize();
             core::Vector3f n = data.triangle_.normal_;
             float cosen = core::DotProduction(w, n);
@@ -50,7 +52,7 @@ namespace rendering
         return intersection;
     }
 
-    scene::Intersection Renderpipeline::Light::SampleNormal(const core::Vector3f& shaderPoint, float& pdf)
+    scene::Intersection RenderPipeline::Light::SampleNormal(const core::Vector3f& shaderPoint, float& pdf)
     {
         scene::Intersection intersection = {};
 
@@ -59,7 +61,7 @@ namespace rendering
         for (int i = 0; i < this->lightObjectData_.size(); i++)
             totalArea += this->lightObjectData_[i].triangle_.area_;        
 
-        float randomNum = core::RandomQueue::GetInstance()->GetRandomNum() * totalArea;
+        float randomNum = core::ThreadSafeRandomQueue::GetInstance()->GetRandomNum() * totalArea;
 
         float currentArea = 0.0f;
         int i = 0;
@@ -76,24 +78,24 @@ namespace rendering
         return intersection;
     }
 
-    Renderpipeline::Light::LightTriangleData::LightTriangleData(const scene::Triangle& triangle) : triangle_(triangle)
+    RenderPipeline::Light::LightTriangleData::LightTriangleData(const scene::Triangle& triangle) : triangle_(triangle)
     {
         this->inner_ = triangle_.GetInner();
     }
 
-    void Renderpipeline::Light::AddTriangle(const scene::Triangle& triangle)
+    void RenderPipeline::Light::AddTriangle(const scene::Triangle& triangle)
     {
         this->lightObjectData_.emplace_back(triangle);
     }
 
-    Renderpipeline::Renderpipeline() : RussianRoulette_(0.8f), maxDepth_(16) { }
+    RenderPipeline::RenderPipeline() : RussianRoulette_(0.8f), maxDepth_(16) { }
 
-    Renderpipeline::Renderpipeline(scene::Scene& scene)
+    RenderPipeline::RenderPipeline(scene::Scene& scene)
     {
         this->PushSceneInPipeline(scene);
     }
 
-    void Renderpipeline::PreCompute()
+    void RenderPipeline::PreCompute()
     {
         //init triangleLists and use the transform
         for (resource::Obj* object : this->scene_->objectList_)
@@ -139,7 +141,7 @@ namespace rendering
 
     }
 
-    void Renderpipeline::BuildBoundingBoxTree()
+    void RenderPipeline::BuildBoundingBoxTree()
     {
         //build objects list;
         std::vector<scene::Object* > objects(this->triangleList_.size());
@@ -153,7 +155,7 @@ namespace rendering
             objects[i] = &this->triangleList_[i];
         }
 
-        this->boundingTree_ = scene::BoundingTreeFactory::Instance().GetBoundingTree(scene::BoundingTreeFactory::TypeOfBoundingTree::BVH);      
+        this->boundingTree_ = scene::BoundingTreeFactory::GetInstance()->GetBoundingTree(scene::BoundingTreeFactory::TypeOfBoundingTree::BVH);      
         this->boundingTree_->BuildBVH(objects); 
         //this->boundingTree->Show();
 
@@ -165,7 +167,7 @@ namespace rendering
     }   
 
 
-    core::Vector3f Renderpipeline::RayTrace(core::Ray ray, int depth)
+    core::Vector3f RenderPipeline::RayTrace(core::Ray ray, int depth)
     {
         scene::Intersection intersection;
         intersection = this->boundingTree_->GetIntersectionObject(ray);
@@ -190,7 +192,7 @@ namespace rendering
     
         //sample light
         core::Vector3f firstLight = core::Vector3f(0.0f);
-        for (Renderpipeline::Light& light : triangleOfLight_)
+        for (RenderPipeline::Light& light : triangleOfLight_)
         {
             float pdfLight = 0.0;
             scene::Intersection lightIntersection = light.SampleNormal(shaderPoint, pdfLight);
@@ -230,19 +232,73 @@ namespace rendering
         return result;
     }
 
-
-    void Renderpipeline::PushSceneInPipeline(scene::Scene& scene)
+    core::Vector3f RenderPipeline::ThreadSafeRayTrace(core::Ray ray, int depth)
     {
-        this->scene_ = &scene;
+        scene::Intersection intersection;
+        intersection = this->boundingTree_->GetIntersectionObject(ray);
 
-        //prepare for the rendering
-        this->PreCompute();
+        if (!intersection.happened || depth > this->maxDepth_)
+            return core::Vector3f(0.0);
 
-        //build boundingBoxTree
-        this->BuildBoundingBoxTree();
+        core::Vector3f result(0.0);
+
+        if (intersection.m->self_illuminating_)
+        {
+            if (!depth)
+                return intersection.m->illuminate_;
+            else 
+                return core::Vector3f(0.0f);
+        }
+
+
+        core::Vector3f shaderPoint = intersection.coords;
+        core::Vector3f n = intersection.normal.Normalize();
+        core::Vector3f wo = ray.dir_;
+    
+        //sample light
+        core::Vector3f firstLight = core::Vector3f(0.0f);
+        for (RenderPipeline::Light& light : triangleOfLight_)
+        {
+            float pdfLight = 0.0;
+            scene::Intersection lightIntersection = light.SampleNormal(shaderPoint, pdfLight);
+            core::Vector3f xToP = lightIntersection.coords - shaderPoint;
+            core::Vector3f ws = xToP.GetNormalize();
+            scene::Intersection intersectionFromLight = this->boundingTree_->GetIntersectionObject(core::Ray(shaderPoint, ws));
+            if (intersectionFromLight.happened && intersectionFromLight.id == light.ID_)
+            {
+                core::Vector3f ns = lightIntersection.normal.Normalize();
+                resource::Material* lightMaterial = intersectionFromLight.m;
+                core::Vector3f BRDF = intersection.m->shader_->GetBRDF(ws, -wo, ns, intersection.m);
+                float cosen1 = core::DotProduction(ws, n);
+                float cosen2 = core::DotProduction(-ws, ns);
+                float lengthPow2 = core::DotProduction(xToP, xToP);
+                firstLight += lightMaterial->illuminate_ * BRDF * cosen1 * cosen2 / lengthPow2 / pdfLight;
+            }
+        }
+
+        result += firstLight;
+
+        //sample other
+        if (core::ThreadSafeRandomQueue::GetInstance()->GetRandomNum() > this->RussianRoulette_)
+            return result;
+
+        core::Vector3f secondLight = core::Vector3f(0.0f);
+
+        core::Vector3f wi = intersection.m->shader_->Sample(wo, n).Normalize();
+
+        float pdf = intersection.m->shader_->Pdf(-wo, wi, n);
+        float cosen = core::DotProduction(n, wi);   
+        core::Vector3f BRDF = intersection.m->shader_->GetBRDF(-wo, wi, n, intersection.m);
+
+        secondLight = this->ThreadSafeRayTrace(core::Ray(shaderPoint ,wi), depth + 1) * BRDF * cosen / pdf / this->RussianRoulette_;
+
+        result += secondLight;
+    
+        return result;
     }
 
-    void Renderpipeline::DrawCall(std::vector<core::Vector3f>& framebuffer, int spp)
+
+    void RenderPipeline::DrawCallImp_V1(std::vector<core::Vector3f>& framebuffer, int spp)
     {
         core::Vector3f& oir = this->scene_->camera_.eye_point_;
         core::Vector3f& starPoint = this->scene_->camera_.imageView_.starPoint_;
@@ -357,11 +413,112 @@ namespace rendering
         std::cout << "                                 :" << diff / 1000 << "s" << std::endl;
         std::cout << "                                 :" << diff / 1000 / 60 << "minute" << std::endl;
         std::cout << "                                 :" << diff / 1000 / 60 / 60 << "hour" << std::endl;
+    }
+
+    void RenderPipeline::DrawCallImp_V2(std::vector<core::Vector3f>& framebuffer, int spp)
+    {
+
+        core::Vector3f& oir = this->scene_->camera_.eye_point_;
+        core::Vector3f& starPoint = this->scene_->camera_.imageView_.starPoint_;
+        core::Vector3f& delta_u = this->scene_->camera_.imageView_.delta_u_;
+        core::Vector3f& delta_v = this->scene_->camera_.imageView_.delta_v_;
+
+
+        int& step_u = this->scene_->camera_.imageView_.step_u_;
+        int& step_v = this->scene_->camera_.imageView_.step_v_;
+
+        int sqrtSpp = std::sqrt(spp);
+        int sampleBoxCount = sqrtSpp * sqrtSpp;
+        int multiSample = spp / sampleBoxCount;
+        int centerSample = spp - multiSample * sampleBoxCount;
+
+        if (sqrtSpp == 1)
+        {
+            sqrtSpp = 0;
+            centerSample = spp;
+        }
+
+        core::Vector3f d_delta_u = delta_u / (float)sqrtSpp;
+        core::Vector3f d_delta_v = delta_v / (float)sqrtSpp;
+
+        std::cout << "-- Star to trace ray.\n";
+        std::chrono::high_resolution_clock::time_point star = std::chrono::high_resolution_clock::now();
+
+        std::cout << "Execution progress :\n";
+         
+        int count = 0;
+
+        for (int j = 0; j < step_v; j++)
+        {
+            for (int i = 0; i < step_u; i++)
+            {
+                core::Vector3f temp(0.0f);
+                core::Vector3f centerPoint = starPoint + delta_u * i + delta_v * j;
+                int index = j * this->scene_->width_ + i;
+                core::Vector3f upLeft = centerPoint - delta_u * 0.5 - delta_v * 0.5;
+                for (int x = 0; x < sqrtSpp; x++)
+                {
+                    for (int y = 0; y < sqrtSpp; y++)
+                    {
+                        core::Vector3f dir = (upLeft + d_delta_u * x + d_delta_v * y - oir).Normalize();
+                        for (int z = 0; z < multiSample; z++)
+                            core::ThreadPool::GetInstance()->Commit(this->GenerateRenderTask(&framebuffer[index], index, core::Ray(oir, dir), 0, spp));
+                    }
+                }
+
+                core::Ray centerRay(oir, (centerPoint - oir).Normalize());
+                for (int center = 0; center < centerSample; center++)
+                    core::ThreadPool::GetInstance()->Commit(this->GenerateRenderTask(&framebuffer[index], index, centerRay, 0, spp));
+            }
+        }
+
+        std::cout << "Finish Generate Render Task" << std::endl;
+
+        core::ThreadPool::GetInstance()->WaiteAll();     
+        core::ThreadPool::GetInstance()->ShutDownAllThreads();  
+
+        std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
+
+        int64_t diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - star).count();
+
+        std::cout << "-- End of tracing ray, used time :" << diff << "ms" << std::endl;
+        std::cout << "                                 :" << diff / 1000 << "s" << std::endl;
+        std::cout << "                                 :" << diff / 1000 / 60 << "minute" << std::endl;
+        std::cout << "                                 :" << diff / 1000 / 60 / 60 << "hour" << std::endl;
+
 
     }
 
+    std::function<void()> RenderPipeline::GenerateRenderTask(core::Vector3f* result, int index, core::Ray ray, int depth, int spp)
+    {
+        auto task = [this](core::Vector3f*result, int index, core::Ray ray, int depth, int spp){
+            core::Vector3f r = this->ThreadSafeRayTrace(ray, depth);            
+            
+            result->x += r.x / spp;
+            result->y += r.y / spp;
+            result->z += r.z / spp;
+        };    
+        return std::bind(task, result, index, ray, depth, spp);    
+    }
 
-    void Renderpipeline::triangleListShow() const
+    void RenderPipeline::PushSceneInPipeline(scene::Scene& scene)
+    {
+        this->scene_ = &scene;
+
+        //prepare for the rendering
+        this->PreCompute();
+
+        //build boundingBoxTree
+        this->BuildBoundingBoxTree();
+    }
+
+    void RenderPipeline::DrawCall(std::vector<core::Vector3f>& framebuffer, int spp)
+    {        
+        //this->DrawCallImp_V1(framebuffer, spp);
+        this->DrawCallImp_V2(framebuffer, spp);
+    }
+
+    void RenderPipeline::TriangleListShow() const
     {
         for (auto& triangle : this->triangleList_)
         {

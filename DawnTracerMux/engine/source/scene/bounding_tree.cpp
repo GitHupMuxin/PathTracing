@@ -1,5 +1,6 @@
 #include <vector>
 #include <functional>
+#include "engine/platform/platform_utils.h"
 #include "engine/scene/bounding_tree.h"
 
 namespace scene
@@ -117,83 +118,71 @@ namespace scene
             node->box_ = BoundingBox::Union(node->left_->box_, node->right_->box_);
         
         }
+        return node;
+    }
 
-    return node;
-}
-
-void SimpleBVH::BuildBVH(std::vector<Object* > objects)
-{
-    this->BVHHead_ = Build(objects);   
-}
-
-
-Intersection SimpleBVH::GetIntersectionObject(const core::Ray& ray)
-{
-    Intersection intersection;
-
-    intersection = this->GetLastNodeIntersection(this->BVHHead_, ray);
-
-    return intersection;
-}
+    void SimpleBVH::BuildBVH(std::vector<Object* > objects)
+    {
+        this->BVHHead_ = Build(objects);  
+        std::cout << "Bounding box size:" << sizeof(BoundingTreeNode) << "\n";
+        std::cout << "cache size :" << platform::PlatformUtils::GetCacheLineSize() << "\n";
+    } 
 
 
-BoundingTreeNode* SimpleBVH::GetBoundingTree()
-{
-    return this->BVHHead_;
-}
+    Intersection SimpleBVH::GetIntersectionObject(const core::Ray& ray)
+    {
+        Intersection intersection;
 
-void SimpleBVH::Show() const
-{    
-    std::function<void(BoundingTreeNode* node)> show = [&](BoundingTreeNode* node) -> void {
-        if (node == nullptr)
-            return ;
-        if (node->left_ != nullptr)
-            show(node->left_);
-        if (node->right_ != nullptr)
-            show(node->right_);
-        std::cout << "node max point :" << node->box_.pMax_ << "   min point :" << node->box_.pMin_ << "\n";
-    };
+        intersection = this->GetLastNodeIntersection(this->BVHHead_, ray);
 
-    show(this->BVHHead_);
-}
-
-SimpleBVH::SimpleBVH() 
-{ 
-    BVHHead_ = nullptr;
-}
-
-SimpleBVH::~SimpleBVH()
-{
-    std::function<void(BoundingTreeNode* node)> func = [&](BoundingTreeNode* node) -> void{
-        if (node == nullptr)
-            return;
-        if (node->left_ != nullptr)
-            func(node->left_);
-        if (node->right_ != nullptr)
-            func(node->right_);
-        delete node;
-    };
-}
+        return intersection;
+    }
 
 
+    BoundingTreeNode* SimpleBVH::GetBoundingTree()
+    {
+        return this->BVHHead_;
+    }
 
+    void SimpleBVH::Show() const
+    {    
+        std::function<void(BoundingTreeNode* node)> show = [&](BoundingTreeNode* node) -> void {
+            if (node == nullptr)
+                return ;
+            if (node->left_ != nullptr)
+                show(node->left_);
+            if (node->right_ != nullptr)
+                show(node->right_);
+            std::cout << "node max point :" << node->box_.pMax_ << "   min point :" << node->box_.pMin_ << "\n";
+        };
 
+        show(this->BVHHead_);
+    }
 
+    SimpleBVH::SimpleBVH() 
+    { 
+        BVHHead_ = nullptr;
+    }
 
-
-
-
-
-
-
-
-    BoundingTreeFactory* BoundingTreeFactory::instance_ = new BoundingTreeFactory();
+    SimpleBVH::~SimpleBVH()
+    {
+        std::function<void(BoundingTreeNode* node)> func = [&](BoundingTreeNode* node) -> void{
+            if (node == nullptr)
+                return;
+            if (node->left_ != nullptr)
+                func(node->left_);
+            if (node->right_ != nullptr)
+                func(node->right_);
+            delete node;
+        };
+    }
 
     BoundingTreeFactory::BoundingTreeFactory() { }
 
-    BoundingTreeFactory& BoundingTreeFactory::Instance()
+    BoundingTreeFactory* BoundingTreeFactory::GetInstance()
     {
-        return *instance_;
+        static BoundingTreeFactory instance; 
+        return &instance;
     }
 
     BaseBoundingTree* BoundingTreeFactory::GetBoundingTree(BoundingTreeFactory::TypeOfBoundingTree t)
@@ -210,6 +199,5 @@ SimpleBVH::~SimpleBVH()
         }
         return result;
     }
-
 
 }

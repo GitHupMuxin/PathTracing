@@ -9,13 +9,12 @@ namespace core
 {
     namespace memory
     {
-        std::shared_ptr<PageCache> PageCache::instance_(new PageCache);
-
         PageCache::PageCache() { }
 
-        std::shared_ptr<PageCache> PageCache::GetInstance() noexcept
+        PageCache* PageCache::GetInstance() noexcept
         {
-            return PageCache::instance_;
+            static PageCache instance;
+            return &instance;
         }
         
         Span* PageCache::OfferASpan(size_t pageCount)

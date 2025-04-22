@@ -1,4 +1,5 @@
 file(GLOB_RECURSE ENGINE_SOURCES
+    "source/platform/normal_system_config.cpp"
     "source/core/*.cpp"
     "source/resource/*.cpp"
     "source/scene/*.cpp"
@@ -23,7 +24,9 @@ add_library(engine_lib STATIC)
 
 target_sources(engine_lib PRIVATE ${ENGINE_SOURCES} ${PLATFORM_SOURCES})
 
-target_link_libraries(engine_lib PRIVATE pugixml_lib)
+find_package(Threads REQUIRED)
+
+target_link_libraries(engine_lib PRIVATE pugixml_lib Threads::Threads)
 
 # message(STATUS "Engibe sources: ${ENGINE_SOURCES}")
 

@@ -95,8 +95,8 @@ namespace scene
 
     void Triangle::Sample(Intersection& intersection, float& pdf)
     {
-        float r1 = core::RandomQueue::GetInstance()->GetRandomNum();
-        float r2 = core::RandomQueue::GetInstance()->GetRandomNum();
+        float r1 = core::ThreadSafeRandomQueue::GetInstance()->GetRandomNum();
+        float r2 = core::ThreadSafeRandomQueue::GetInstance()->GetRandomNum();
         
         r1 = std::sqrt(r1);
 

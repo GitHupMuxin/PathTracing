@@ -8,12 +8,12 @@
 namespace scene
 {
 
-    struct BoundingTreeNode
+    struct alignas(64) BoundingTreeNode
     {
-        BoundingBox         box_;
-        BoundingTreeNode*   left_;
-        BoundingTreeNode*   right_;
-        scene::Object*      object_;
+        BoundingBox                     box_;
+        BoundingTreeNode*               left_;
+        BoundingTreeNode*               right_;
+        scene::Object*                  object_;
 
         BoundingTreeNode();
     };
@@ -30,16 +30,16 @@ namespace scene
     class SimpleBVH : public BaseBoundingTree
     {
         private:
-            BoundingTreeNode* BVHHead_;
+            BoundingTreeNode*           BVHHead_;
 
-            Intersection        GetLastNodeIntersection(BoundingTreeNode* node, const core::Ray& ray);
-            BoundingTreeNode*   Build(std::vector<Object* > objects);        
+            Intersection                GetLastNodeIntersection(BoundingTreeNode* node, const core::Ray& ray);
+            BoundingTreeNode*           Build(std::vector<Object* > objects);        
         public:
             SimpleBVH();
-            void                BuildBVH(std::vector<Object *> objects) override;
-            Intersection        GetIntersectionObject(const core::Ray& ray) override;
-            BoundingTreeNode*   GetBoundingTree() override;
-            void                Show() const override;
+            void                        BuildBVH(std::vector<Object *> objects) override;
+            Intersection                GetIntersectionObject(const core::Ray& ray) override;
+            BoundingTreeNode*           GetBoundingTree() override;
+            void                        Show() const override;
             ~SimpleBVH();
     };
 
@@ -47,15 +47,14 @@ namespace scene
     class BoundingTreeFactory
     {
         private:
-            static BoundingTreeFactory* instance_;
-
             BoundingTreeFactory();
             BoundingTreeFactory(const BoundingTreeFactory& ) = delete;
             BoundingTreeFactory&            operator = (const BoundingTreeFactory& ) = delete;
+
         public:
             enum TypeOfBoundingTree { BVH };
 
-            static BoundingTreeFactory&     Instance();
+            static BoundingTreeFactory*     GetInstance();
             BaseBoundingTree*               GetBoundingTree(TypeOfBoundingTree t);    
     };
 

@@ -21,15 +21,13 @@ namespace core
 
                 PageCache();
                 PageCache(const PageCache& pageCache) = delete;
-                PageCache& operator = (const PageCache& pageCache) = delete;
+                PageCache&                          operator = (const PageCache& pageCache) = delete;
             public:
-                static std::shared_ptr<PageCache> instance_;
-
-                static std::shared_ptr<PageCache> GetInstance() noexcept;
-                Span* OfferASpan(size_t pageCount);
-                Span* MapObjectToSpan(void* object);
-                void ReleaseSpanToPageCache(Span* span);
-                void Show() const noexcept;
+                static PageCache*                   GetInstance() noexcept;
+                Span*                               OfferASpan(size_t pageCount);
+                Span*                               MapObjectToSpan(void* object);
+                void                                ReleaseSpanToPageCache(Span* span);
+                void                                Show() const noexcept;
         };
     }
 }

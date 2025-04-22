@@ -2,7 +2,11 @@
 #include <unistd.h>
 #include <limits.h>
 #include <sys/mman.h>
+#include <dirent.h>
 #include "engine/platform/platform_utils.h"
+#include <stdexcept>
+#include <string.h>
+#include <istream>
 
 namespace platform
 {
@@ -63,6 +67,14 @@ namespace platform
     }
 
 
+    size_t PlatformUtils::GetCacheLineSize()
+    {
+        long lineSize = sysconf(_SC_LEVEL1_DCACHE_LINESIZE);
+        if (lineSize > 0)
+            return lineSize;
+        else 
+            return 0;
+    }     
 }
 
 #endif

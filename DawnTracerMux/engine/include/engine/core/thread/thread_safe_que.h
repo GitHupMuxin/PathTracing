@@ -8,8 +8,8 @@ namespace core
     class ThreadSafeDequeue
     {
         private:
-            std::deque<T> safeDequeue_;
-            mutable std::mutex lock_;
+            std::deque<T>           safeDequeue_;
+            mutable std::mutex      lock_;
 
         public:
 
@@ -21,14 +21,14 @@ namespace core
             ThreadSafeDequeue<T>& operator = (const ThreadSafeDequeue<T>& safeQueue) = delete;
             ThreadSafeDequeue<T>& operator = (const ThreadSafeDequeue<T>&& safeQueue) = delete;           
 
-            bool    Empty() const noexcept;
-            size_t  Size() const noexcept;
-            void    PushFront(T& t);
-            void    PushFront(T&& t);
-            void    PushBack(T& t);
-            void    PushBack(T&& t);
-            bool    PopFront(T& t);
-            bool    PopBack(T& t);
+            bool                    Empty() const noexcept;
+            size_t                  Size() const noexcept;
+            void                    PushFront(T& t);
+            void                    PushFront(T&& t);
+            void                    PushBack(T& t);
+            void                    PushBack(T&& t);
+            bool                    PopFront(T& t);
+            bool                    PopBack(T& t);
     };
 
 
@@ -45,14 +45,14 @@ namespace core
             ThreadSafeQueue(const ThreadSafeQueue<T>& safeQueue) = delete;
             ThreadSafeQueue(const ThreadSafeQueue<T>&& safeQueue) = delete;
             
-            ThreadSafeQueue<T>& operator = (const ThreadSafeQueue<T>& safeQueue) = delete;
-            ThreadSafeQueue<T>& operator = (const ThreadSafeQueue<T>&& safeQueue) = delete;
+            ThreadSafeQueue<T>&     operator = (const ThreadSafeQueue<T>& safeQueue) = delete;
+            ThreadSafeQueue<T>&     operator = (const ThreadSafeQueue<T>&& safeQueue) = delete;
 
-            bool    Empty() const noexcept;
-            size_t  Size() const noexcept;
-            void    Push(T& t);
-            void    Push(T&& t);
-            bool    Pop(T& t);
+            bool                    Empty() const noexcept;
+            size_t                  Size() const noexcept;
+            void                    Push(T& t);
+            void                    Push(T&& t);
+            bool                    Pop(T& t);
     };
 
 }

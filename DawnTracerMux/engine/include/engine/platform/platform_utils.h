@@ -10,9 +10,9 @@ namespace platform
             static const std::string    GetExecutionPath();
             static const long int       GetSystemPageSize();
             static const long int       GetSystemPageShift();
-            static const size_t         GetSystemHardwareConcurrency();
             static void*                SystemAllocaPageMemory(size_t size);
             static void                 SystemFreePageMemory(void* ptr, size_t size);
+            static size_t               GetCacheLineSize();     
     };
 }
 
