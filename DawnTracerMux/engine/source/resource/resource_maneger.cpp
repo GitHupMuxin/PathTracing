@@ -30,6 +30,7 @@ namespace resource
             this->spp_ = spp;
             std::cout << "scene name: " << scene_name << std::endl;
             std::cout << "width:" << width << "    height:" << height << std::endl;
+            std::cout << "spp:" << spp << std::endl;
 
             const auto& CameraJson = scene_data["scene"]["camera"].front();            
             this->camera_.eye_point_ = core::Vector3f(CameraJson["eye_point"].get<std::vector<float>>());
@@ -128,7 +129,7 @@ namespace resource
 
     void ResourceManeger::LodeSceneFile(const std::string& path)
     {
-        std::cout << "--lode scene file--\n" << "scene file path:" << path << "\n";
+        std::cout << "--lode scene file.\n" << "scene file path:" << path << "\n";
         size_t n = path.length();
         if (path.substr(n - 5, n) == ".json")
             this->LodeJson(path);
@@ -136,6 +137,7 @@ namespace resource
             this->LodeXML(path);
         else 
             throw std::runtime_error("wrong path Input.");
+        std::cout << "--end lode scene file." << std::endl;
     }
 
     void ResourceManeger::AddShader(const std::string& str, std::shared_ptr<ShaderBase> shader)

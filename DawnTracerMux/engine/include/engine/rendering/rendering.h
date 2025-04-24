@@ -42,7 +42,7 @@ namespace rendering
             core::Vector3f          ThreadSafeRayTrace(core::Ray ray, int depth);
             void                    DrawCallImp_V1(std::vector<core::Vector3f>& framebuffer, int spp);
             void                    DrawCallImp_V2(std::vector<core::Vector3f>& framebuffer, int spp);
-            std::function<void()>   GenerateRenderTask(core::Vector3f* result, int index, core::Ray ray, int depth, int spp);
+            std::function<void()>   GenerateRenderTask(core::Vector3f*result, core::Vector3f oir, core::Vector3f centerPoint, core::Vector3f delta_u, core::Vector3f delta_v, core::Vector3f d_delta_u, core::Vector3f d_delta_v, int multiSample, int centerSample, int sqrtSpp, int spp);
         public:
             RenderPipeline();
             RenderPipeline(scene::Scene& scene);

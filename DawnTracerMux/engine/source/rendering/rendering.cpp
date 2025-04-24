@@ -452,23 +452,9 @@ namespace rendering
         {
             for (int i = 0; i < step_u; i++)
             {
-                core::Vector3f temp(0.0f);
-                core::Vector3f centerPoint = starPoint + delta_u * i + delta_v * j;
                 int index = j * this->scene_->width_ + i;
-                core::Vector3f upLeft = centerPoint - delta_u * 0.5 - delta_v * 0.5;
-                for (int x = 0; x < sqrtSpp; x++)
-                {
-                    for (int y = 0; y < sqrtSpp; y++)
-                    {
-                        core::Vector3f dir = (upLeft + d_delta_u * x + d_delta_v * y - oir).Normalize();
-                        for (int z = 0; z < multiSample; z++)
-                            core::ThreadPool::GetInstance()->Commit(this->GenerateRenderTask(&framebuffer[index], index, core::Ray(oir, dir), 0, spp));
-                    }
-                }
-
-                core::Ray centerRay(oir, (centerPoint - oir).Normalize());
-                for (int center = 0; center < centerSample; center++)
-                    core::ThreadPool::GetInstance()->Commit(this->GenerateRenderTask(&framebuffer[index], index, centerRay, 0, spp));
+                core::Vector3f centerPoint = starPoint + delta_u * i + delta_v * j;
+                core::ThreadPool::GetInstance()->Commit(this->GenerateRenderTask(&framebuffer[index], oir, centerPoint, delta_u, delta_v, d_delta_u, d_delta_v, multiSample, centerSample, sqrtSpp, spp));
             }
         }
 
@@ -489,16 +475,36 @@ namespace rendering
 
     }
 
-    std::function<void()> RenderPipeline::GenerateRenderTask(core::Vector3f* result, int index, core::Ray ray, int depth, int spp)
+    std::function<void()> RenderPipeline::GenerateRenderTask(core::Vector3f*result, core::Vector3f oir, core::Vector3f centerPoint, core::Vector3f delta_u, core::Vector3f delta_v, core::Vector3f d_delta_u, core::Vector3f d_delta_v, int multiSample, int centerSample, int sqrtSpp, int spp)
     {
-        auto task = [this](core::Vector3f*result, int index, core::Ray ray, int depth, int spp){
-            core::Vector3f r = this->ThreadSafeRayTrace(ray, depth);            
-            
-            result->x += r.x / spp;
-            result->y += r.y / spp;
-            result->z += r.z / spp;
+        auto task = [this](core::Vector3f*result, core::Vector3f oir, core::Vector3f centerPoint, core::Vector3f delta_u, core::Vector3f delta_v, core::Vector3f d_delta_u, core::Vector3f d_delta_v, int multiSample, int centerSample, int sqrtSpp, int spp){
+
+            core::Vector3f upLeft = centerPoint - delta_u * 0.5 - delta_v * 0.5;
+            for (int x = 0; x < sqrtSpp; x++)
+            {
+                for (int y = 0; y < sqrtSpp; y++)
+                {
+                    core::Vector3f dir = (upLeft + d_delta_u * x + d_delta_v * y - oir).Normalize();
+                    for (int multiTime = 0; multiTime < multiSample; multiTime++)
+                    {
+                        core::Vector3f r = this->ThreadSafeRayTrace(core::Ray(oir, dir), 0);            
+                        result->x += r.x / spp;
+                        result->y += r.y / spp;
+                        result->z += r.z / spp;
+                    }
+                }
+            }
+
+            core::Ray centerRay(oir, (centerPoint - oir).Normalize());
+            for (int center = 0; center < centerSample; center++)
+            {
+                core::Vector3f r = this->ThreadSafeRayTrace(centerRay, 0);
+                result->x += r.x / spp;
+                result->y += r.y / spp;
+                result->z += r.z / spp;
+            }
         };    
-        return std::bind(task, result, index, ray, depth, spp);    
+        return std::bind(task, result, oir, centerPoint, delta_u, delta_v, d_delta_u, d_delta_v, multiSample, centerSample, sqrtSpp, spp);    
     }
 
     void RenderPipeline::PushSceneInPipeline(scene::Scene& scene)
