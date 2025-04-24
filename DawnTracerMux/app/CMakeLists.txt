@@ -3,29 +3,33 @@ add_executable(PathTracing)
 target_sources(PathTracing PRIVATE
     source/main.cpp
 )
-
 target_link_libraries(PathTracing PRIVATE engine_lib)
 
 set(ASSETS_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets")
-set(ASSETS_TARGET_DIR "$<TARGET_FILE_DIR:PathTracing>/assets")
+set(ASSETS_TARGET_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/assets")
+
+file(GLOB_RECURSE ASSET_FILES
+    "${ASSETS_SOURCE_DIR}/*"
+)
 
 add_custom_command(
-    OUTPUT "${CMAKE_BINARY_DIR}/dummy.txt"
-    COMMAND ${CMAKE_COMMAND} -E remove_directory "${ASSETS_TARGET_DIR}" 
+    OUTPUT "${CMAKE_BINARY_DIR}/assets_copied.flag"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_TARGET_DIR}" 
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     "${ASSETS_SOURCE_DIR}"
     "${ASSETS_TARGET_DIR}"
-    COMMENT "Copying assets to assets(build) folder"
+    DEPENDS ${ASSETS_FILE}
+    COMMENT "Copying assets to build folder"
     VERBATIM
 )
 
 add_custom_target(CopyAssets ALL 
-    DEPENDS "${CMAKE_BINARY_DIR}/dummy.txt"
+    DEPENDS "${CMAKE_BINARY_DIR}/assets_copied.flag"
 )
 
-set(OUT_DIR "$<TARGET_FILE_DIR:PathTracing>/out}")
-set(OUT_MARKER "${OUR_DIR}/.dir_created")
 
+set(OUT_DIR "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/out")
+set(OUT_MARKER "${CMAKE_BINARY_DIR}/out_dir_cread.txt")
 add_custom_command(
     OUTPUT ${OUT_MARKER}
     COMMAND "${CMAKE_COMMAND}" -E make_directory "${OUT_DIR}"

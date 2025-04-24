@@ -175,6 +175,7 @@ namespace scene
                 func(node->right_);
             delete node;
         };
+        func(this->BVHHead_);
     }
 
     BoundingTreeFactory::BoundingTreeFactory() { }
