@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <atomic>
 #include "engine/core/math/vector_defination.h"
 #include "engine/core/ray.h"
 #include "engine/resource/object.h"
@@ -30,6 +31,8 @@ namespace scene
     class SimpleBVH : public BaseBoundingTree
     {
         private:
+            std::atomic<uint64_t> totalRays;
+            std::atomic<double> totalIntersectTime;
             BoundingTreeNode*           BVHHead_;
 
             Intersection                GetLastNodeIntersection(BoundingTreeNode* node, const core::Ray& ray);

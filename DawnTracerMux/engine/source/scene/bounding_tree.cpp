@@ -1,7 +1,10 @@
 #include <vector>
 #include <functional>
+#include <chrono>
 #include "engine/platform/platform_utils.h"
+#include "engine/core/thread/thread_pool.h"
 #include "engine/scene/bounding_tree.h"
+#include "engine/tools/test_block.h"
 
 namespace scene
 {
@@ -131,10 +134,24 @@ namespace scene
 
     Intersection SimpleBVH::GetIntersectionObject(const core::Ray& ray)
     {
+        //Test block
+        auto start = std::chrono::high_resolution_clock::now();
+
+
         Intersection intersection;
 
         intersection = this->GetLastNodeIntersection(this->BVHHead_, ray);
 
+        //Test block
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        tool::TEST_BLOCK->addRayCount();
+        tool::TEST_BLOCK->data.rayTimeCount += duration.count() * 1000000;
+        if (tool::TEST_BLOCK->data.rayCount % 1000 == 0)
+        {
+            tool::TotalTestBlock::GetInstance()->data.totalRay.fetch_add(tool::TEST_BLOCK->data.rayCount, std::memory_order_relaxed);
+            tool::TotalTestBlock::GetInstance()->data.totalRayTime.fetch_add(tool::TEST_BLOCK->data.rayTimeCount, std::memory_order_relaxed);
+        }
         return intersection;
     }
 

@@ -8,6 +8,7 @@
 #include "engine/scene/bounding_tree.h"
 #include "engine/rendering/rendering.h"
 #include "engine/rendering/rendering_utils.h"
+#include "engine/tools/test_block.h"
 
 #define EPSILON 0.0001
 

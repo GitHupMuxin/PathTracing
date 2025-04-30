@@ -2,16 +2,18 @@
 #include <iostream>
 #include "engine/platform/normal_system_config.h"
 #include "engine/core/thread/thread_pool.h"
+#include "engine/tools/test_block.h"
 
 namespace core
 {
+    unsigned int ThreadPool::Worker::uniqueWorkerID = 0;
 
     ThreadPool::Worker::Worker(std::function<void()>&& workerMain)
     {      
+        this->workerID_ = Worker::workerID_++;
         this->worker_ = std::make_unique<std::thread>(std::move(workerMain));
     } 
-
-
+    
     void ThreadPool::WorkerMain()
     {
         unsigned int taskCount = 0;
@@ -36,7 +38,9 @@ namespace core
                 this->condition.notify_one();
         }
 
+        std::thread::id id = std::this_thread::get_id();
         std::cout << "--Thread shutdown. Finish task:" << taskCount << "\n";
+        std::cout << "thread id: " << id << std::endl;
     } 
 
     ThreadPool::Job::Job(std::unique_ptr<std::function<void()>>&& func)
@@ -48,8 +52,6 @@ namespace core
     {
         (*this->func_.get())();
     }
-
-    std::unique_ptr<ThreadPool> ThreadPool::instance_ = std::make_unique<ThreadPool>();
 
     ThreadPool::ThreadPool() : shutdown_(false)
     {
@@ -66,6 +68,9 @@ namespace core
             if (it.worker_->joinable())
                 it.worker_->join();
         }
+
+        std::cout << "Total ray count:" << tool::TotalTestBlock::GetInstance()->data.totalRay.load() << std::endl;
+        std::cout << "Total ray time count:" << tool::TotalTestBlock::GetInstance()->data.totalRayTime.load() << std::endl;
     }
 
     void ThreadPool::WaiteAll()
@@ -87,7 +92,13 @@ namespace core
     
     ThreadPool* ThreadPool::GetInstance()
     {
-        return ThreadPool::instance_.get();        
+        static ThreadPool instance;
+        return &instance;        
+    }
+
+    const unsigned int ThreadPool::GetThreadCount()
+    {
+        return this->workers_.size();
     }
 
 }

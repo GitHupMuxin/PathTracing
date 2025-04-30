@@ -4,6 +4,7 @@ file(GLOB_RECURSE ENGINE_SOURCES
     "source/resource/*.cpp"
     "source/scene/*.cpp"
     "source/rendering/*.cpp"
+    "source/tools/*.cpp"
 )
 
 if (WIN32)

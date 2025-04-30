@@ -14,8 +14,11 @@ namespace core
         private:
             class Worker
             {
+                private:
+                    static unsigned int                             uniqueWorkerID;
                 public:
-                    ThreadPool*                                     threadPool;
+                    unsigned int                                    workerID_;
+                    ThreadPool*                                     threadPool_;
                     std::unique_ptr<std::thread>                    worker_;
                     Worker(std::function<void()>&& workerMain);
             };
@@ -39,15 +42,15 @@ namespace core
             ThreadSafeQueue<Job>                                    jobsQueue_;
             std::vector<Worker>                                     workers_;
             std::condition_variable                                 condition;
-            static std::unique_ptr<ThreadPool>                      instance_;
 
-        public:
             ThreadPool();
+        public:
             ~ThreadPool();
             void                                                    WaiteAll();
             void                                                    ShutDownAllThreads();
 
             static ThreadPool*                                      GetInstance();
+            const unsigned int                                      GetThreadCount();
 
             template<typename F, typename ...Args>
             auto Commit(F&& f, Args&& ...args) -> std::future<decltype(f(args...))>
