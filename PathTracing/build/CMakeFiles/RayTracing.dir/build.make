@@ -52,10 +52,10 @@ RM = D:\CMake\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace
+CMAKE_SOURCE_DIR = E:\PathTrace\PathTracing\PathTracing
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build
+CMAKE_BINARY_DIR = E:\PathTrace\PathTracing\PathTracing\build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/RayTracing.dir/depend.make
@@ -70,123 +70,123 @@ include CMakeFiles/RayTracing.dir/flags.make
 
 CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/BoundingBox.cpp
+CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/BoundingBox.cpp
 CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj -MF CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingBox.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.obj -MF CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\BoundingBox.cpp
 
 CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingBox.cpp > CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\BoundingBox.cpp > CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.i
 
 CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/BoundingBox.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingBox.cpp -o CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\BoundingBox.cpp -o CMakeFiles\RayTracing.dir\src\BoundingBox.cpp.s
 
 CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/BoundingTree.cpp
+CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/BoundingTree.cpp
 CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj -MF CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.obj -MF CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\BoundingTree.cpp
 
 CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingTree.cpp > CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\BoundingTree.cpp > CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.i
 
 CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/BoundingTree.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\BoundingTree.cpp -o CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\BoundingTree.cpp -o CMakeFiles\RayTracing.dir\src\BoundingTree.cpp.s
 
 CMakeFiles/RayTracing.dir/src/main.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/main.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/main.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/main.cpp
+CMakeFiles/RayTracing.dir/src/main.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/main.cpp
 CMakeFiles/RayTracing.dir/src/main.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RayTracing.dir/src/main.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/main.cpp.obj -MF CMakeFiles\RayTracing.dir\src\main.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\main.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/RayTracing.dir/src/main.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/main.cpp.obj -MF CMakeFiles\RayTracing.dir\src\main.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\main.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\main.cpp
 
 CMakeFiles/RayTracing.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/main.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\main.cpp > CMakeFiles\RayTracing.dir\src\main.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\main.cpp > CMakeFiles\RayTracing.dir\src\main.cpp.i
 
 CMakeFiles/RayTracing.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/main.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\main.cpp -o CMakeFiles\RayTracing.dir\src\main.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\main.cpp -o CMakeFiles\RayTracing.dir\src\main.cpp.s
 
 CMakeFiles/RayTracing.dir/src/Object.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/Object.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/Object.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Object.cpp
+CMakeFiles/RayTracing.dir/src/Object.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/Object.cpp
 CMakeFiles/RayTracing.dir/src/Object.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RayTracing.dir/src/Object.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Object.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Object.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Object.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Object.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/RayTracing.dir/src/Object.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Object.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Object.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Object.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\Object.cpp
 
 CMakeFiles/RayTracing.dir/src/Object.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/Object.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Object.cpp > CMakeFiles\RayTracing.dir\src\Object.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\Object.cpp > CMakeFiles\RayTracing.dir\src\Object.cpp.i
 
 CMakeFiles/RayTracing.dir/src/Object.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/Object.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Object.cpp -o CMakeFiles\RayTracing.dir\src\Object.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\Object.cpp -o CMakeFiles\RayTracing.dir\src\Object.cpp.s
 
 CMakeFiles/RayTracing.dir/src/Ray.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/Ray.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/Ray.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Ray.cpp
+CMakeFiles/RayTracing.dir/src/Ray.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/Ray.cpp
 CMakeFiles/RayTracing.dir/src/Ray.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RayTracing.dir/src/Ray.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Ray.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Ray.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Ray.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Ray.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/RayTracing.dir/src/Ray.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Ray.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Ray.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Ray.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\Ray.cpp
 
 CMakeFiles/RayTracing.dir/src/Ray.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/Ray.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Ray.cpp > CMakeFiles\RayTracing.dir\src\Ray.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\Ray.cpp > CMakeFiles\RayTracing.dir\src\Ray.cpp.i
 
 CMakeFiles/RayTracing.dir/src/Ray.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/Ray.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Ray.cpp -o CMakeFiles\RayTracing.dir\src\Ray.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\Ray.cpp -o CMakeFiles\RayTracing.dir\src\Ray.cpp.s
 
 CMakeFiles/RayTracing.dir/src/render.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/render.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/render.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/render.cpp
+CMakeFiles/RayTracing.dir/src/render.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/render.cpp
 CMakeFiles/RayTracing.dir/src/render.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RayTracing.dir/src/render.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/render.cpp.obj -MF CMakeFiles\RayTracing.dir\src\render.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\render.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\render.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/RayTracing.dir/src/render.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/render.cpp.obj -MF CMakeFiles\RayTracing.dir\src\render.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\render.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\render.cpp
 
 CMakeFiles/RayTracing.dir/src/render.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/render.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\render.cpp > CMakeFiles\RayTracing.dir\src\render.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\render.cpp > CMakeFiles\RayTracing.dir\src\render.cpp.i
 
 CMakeFiles/RayTracing.dir/src/render.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/render.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\render.cpp -o CMakeFiles\RayTracing.dir\src\render.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\render.cpp -o CMakeFiles\RayTracing.dir\src\render.cpp.s
 
 CMakeFiles/RayTracing.dir/src/Scene.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/Scene.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/Scene.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Scene.cpp
+CMakeFiles/RayTracing.dir/src/Scene.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/Scene.cpp
 CMakeFiles/RayTracing.dir/src/Scene.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RayTracing.dir/src/Scene.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Scene.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Scene.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Scene.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Scene.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/RayTracing.dir/src/Scene.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Scene.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Scene.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Scene.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\Scene.cpp
 
 CMakeFiles/RayTracing.dir/src/Scene.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/Scene.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Scene.cpp > CMakeFiles\RayTracing.dir\src\Scene.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\Scene.cpp > CMakeFiles\RayTracing.dir\src\Scene.cpp.i
 
 CMakeFiles/RayTracing.dir/src/Scene.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/Scene.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Scene.cpp -o CMakeFiles\RayTracing.dir\src\Scene.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\Scene.cpp -o CMakeFiles\RayTracing.dir\src\Scene.cpp.s
 
 CMakeFiles/RayTracing.dir/src/Tool.cpp.obj: CMakeFiles/RayTracing.dir/flags.make
 CMakeFiles/RayTracing.dir/src/Tool.cpp.obj: CMakeFiles/RayTracing.dir/includes_CXX.rsp
-CMakeFiles/RayTracing.dir/src/Tool.cpp.obj: C:/Users/86178/Desktop/毕业设计/vmLinux/share/myRayTrace/src/Tool.cpp
+CMakeFiles/RayTracing.dir/src/Tool.cpp.obj: E:/PathTrace/PathTracing/PathTracing/src/Tool.cpp
 CMakeFiles/RayTracing.dir/src/Tool.cpp.obj: CMakeFiles/RayTracing.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RayTracing.dir/src/Tool.cpp.obj"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Tool.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Tool.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Tool.cpp.obj -c C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Tool.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/RayTracing.dir/src/Tool.cpp.obj"
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/RayTracing.dir/src/Tool.cpp.obj -MF CMakeFiles\RayTracing.dir\src\Tool.cpp.obj.d -o CMakeFiles\RayTracing.dir\src\Tool.cpp.obj -c E:\PathTrace\PathTracing\PathTracing\src\Tool.cpp
 
 CMakeFiles/RayTracing.dir/src/Tool.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/RayTracing.dir/src/Tool.cpp.i"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Tool.cpp > CMakeFiles\RayTracing.dir\src\Tool.cpp.i
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\PathTrace\PathTracing\PathTracing\src\Tool.cpp > CMakeFiles\RayTracing.dir\src\Tool.cpp.i
 
 CMakeFiles/RayTracing.dir/src/Tool.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/RayTracing.dir/src/Tool.cpp.s"
-	E:\VSCode\CppCompiler\mingw64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\src\Tool.cpp -o CMakeFiles\RayTracing.dir\src\Tool.cpp.s
+	E:\VSCode\CppCompiler\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\PathTrace\PathTracing\PathTracing\src\Tool.cpp -o CMakeFiles\RayTracing.dir\src\Tool.cpp.s
 
 # Object files for target RayTracing
 RayTracing_OBJECTS = \
@@ -214,7 +214,7 @@ RayTracing.exe: CMakeFiles/RayTracing.dir/build.make
 RayTracing.exe: CMakeFiles/RayTracing.dir/linkLibs.rsp
 RayTracing.exe: CMakeFiles/RayTracing.dir/objects1.rsp
 RayTracing.exe: CMakeFiles/RayTracing.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable RayTracing.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable RayTracing.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\RayTracing.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -226,6 +226,6 @@ CMakeFiles/RayTracing.dir/clean:
 .PHONY : CMakeFiles/RayTracing.dir/clean
 
 CMakeFiles/RayTracing.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build C:\Users\86178\Desktop\毕业设计\vmLinux\share\myRayTrace\build\CMakeFiles\RayTracing.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" E:\PathTrace\PathTracing\PathTracing E:\PathTrace\PathTracing\PathTracing E:\PathTrace\PathTracing\PathTracing\build E:\PathTrace\PathTracing\PathTracing\build E:\PathTrace\PathTracing\PathTracing\build\CMakeFiles\RayTracing.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/RayTracing.dir/depend
 

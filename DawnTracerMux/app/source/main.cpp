@@ -24,6 +24,12 @@ int main()
 
     //lode the mesh
     std::string executionPath = platform::PlatformUtils::GetExecutionPath();
+    
+#ifdef _WIN32
+    executionPath = executionPath.substr(0, executionPath.find_last_of('/'));
+#endif // windows
+
+
     resource::ResourceManeger::GetInstance()->LodeSceneFile(executionPath + "/assets/scene.json");
 
     //init Scene
@@ -65,7 +71,7 @@ int main()
     //     }
     // }
 
-    std::string outPutFilePath = executionPath + "/out/imageSpp";
+    std::string outPutFilePath = executionPath + "/out/testImageSpp";
     outPutFilePath += std::to_string(spp);
     outPutFilePath += ".ppm";
 

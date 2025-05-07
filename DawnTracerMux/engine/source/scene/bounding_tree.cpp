@@ -151,6 +151,10 @@ namespace scene
         {
             tool::TotalTestBlock::GetInstance()->data.totalRay.fetch_add(tool::TEST_BLOCK->data.rayCount, std::memory_order_relaxed);
             tool::TotalTestBlock::GetInstance()->data.totalRayTime.fetch_add(tool::TEST_BLOCK->data.rayTimeCount, std::memory_order_relaxed);
+
+            //add
+            tool::TEST_BLOCK->data.rayCount = 0;
+            tool::TEST_BLOCK->data.rayTimeCount = 0;
         }
         return intersection;
     }

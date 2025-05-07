@@ -359,53 +359,6 @@ namespace rendering
             float progress = count / maxCount;
             RenderingUtils::ExecutionProgress(progress);
         }
-
-        // float scale = tan(scene->camera.fov * 0.5 * M_PI / 180);
-        // float imageAspectRatio = scene->width / (float)scene->height;
-        // int m = 0;
-        // MATH::Vector3f eye(278, 273, -800);
-        // for (int j = 0; j < scene->height; j++)
-        // {
-        //     for (int i = 0; i < scene->width; i++)
-        //     {
-        //         count++;
-        //         float x = (2 * (i + 0.5) / (float)scene->width - 1) * imageAspectRatio * scale;
-        //         float y = (1 - 2 * (j + 0.5) / (float)scene->height) * scale;
-
-        //         MATH::Vector3f dir = MATH::Vector3f(-x, y, 1).normalize();
-        //         int ssaaTime = (int)sqrt(spp);
-        //         int checkTime = spp / ssaaTime / ssaaTime;
-        //         if (ssaaTime <= 1)
-        //             for (int k = 0; k < spp; k++)
-        //             {
-        //                 framebuffer[m] += this->rayTrace(Ray(eye, dir), 0) / spp; 
-        //             }
-        //         else
-        //         {
-        //             float overflood = 1.0 / (float)ssaaTime;
-        //             for (int xIndex = 0; xIndex < ssaaTime; xIndex++)
-        //             {
-        //                 for (int yIndex = 0; yIndex < ssaaTime; yIndex++)
-        //                 {
-        //                     for (int sampleTime = 0; sampleTime < checkTime; sampleTime++)
-        //                     {
-        //                         float xOfferset = xIndex * overflood + 0.5 * overflood;
-        //                         float yOfferset = yIndex * overflood + 0.5 * overflood;
-        //                         float sampleX = (2 * (i + xOfferset) / (float)scene->width - 1) * imageAspectRatio * scale;
-        //                         float sampleY = (1 - 2 * (j + yOfferset) / (float)scene->height) * scale;
-        //                         MATH::Vector3f sampleDir = MATH::Vector3f(-sampleX, sampleY, 1).normalize();
-        //                         MATH::Vector3f result = this->rayTrace(Ray(oir, sampleDir), 0);
-        //                         framebuffer[m] += result;
-        //                     }
-        //                 }
-        //             }
-        //             framebuffer[m++] /= spp;
-        //         }
-        //     }
-        //     float progress = count / maxCount;
-        //     Tool::execution_progress(progress);
-        // }
-
         std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
 
         int64_t diff = std::chrono::duration_cast<std::chrono::milliseconds>(end - star).count();
@@ -447,7 +400,8 @@ namespace rendering
 
         std::cout << "Execution progress :\n";
          
-        int count = 0;
+        float count = 0;
+        float totalCount = spp * this->scene_->width_ * this->scene_->height_;
 
         for (int j = 0; j < step_v; j++)
         {
@@ -521,7 +475,7 @@ namespace rendering
 
     void RenderPipeline::DrawCall(std::vector<core::Vector3f>& framebuffer, int spp)
     {        
-        //this->DrawCallImp_V1(framebuffer, spp);
+        // this->DrawCallImp_V1(framebuffer, spp);
         this->DrawCallImp_V2(framebuffer, spp);
     }
 

@@ -27,7 +27,7 @@ target_sources(engine_lib PRIVATE ${ENGINE_SOURCES} ${PLATFORM_SOURCES})
 
 find_package(Threads REQUIRED)
 
-target_link_libraries(engine_lib PRIVATE pugixml_lib Threads::Threads)
+target_link_libraries(engine_lib PRIVATE Threads::Threads)
 
 # message(STATUS "Engibe sources: ${ENGINE_SOURCES}")
 
