@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <iostream>
 #include <string>
 #include "engine/platform/platform_utils.h"
@@ -27,7 +28,7 @@ int main()
     
 #ifdef _MSC_VER
     executionPath = executionPath.substr(0, executionPath.find_last_of('/'));
-#endif // windows
+#endif // msvc
 
 
     resource::ResourceManeger::GetInstance()->LodeSceneFile(executionPath + "/assets/scene.json");
@@ -76,6 +77,10 @@ int main()
     outPutFilePath += ".ppm";
 
     rendering::RenderingUtils::SRGBDrawToFile(outPutFilePath, scene.width_, scene.height_, frameBuffer);
+
+#ifdef _MSC_VER
+    getchar();
+#endif // msvc
 
     return 0;
 }
