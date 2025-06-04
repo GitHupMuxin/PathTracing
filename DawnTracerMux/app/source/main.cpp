@@ -25,7 +25,7 @@ int main()
     //lode the mesh
     std::string executionPath = platform::PlatformUtils::GetExecutionPath();
     
-#ifdef _WIN32
+#ifdef _MSC_VER
     executionPath = executionPath.substr(0, executionPath.find_last_of('/'));
 #endif // windows
 
